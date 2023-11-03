@@ -5,7 +5,7 @@ export class User {
   @PrimaryGeneratedColumn()
   UserID: number;
 
-  @Column()
+  @Column({ default: 3 })
   Permission_level: number;
 
   @Column()
