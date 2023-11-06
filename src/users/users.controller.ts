@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../Dtos/user-create.dto';
+import { LoginUserDto } from '../Dtos/user-login.dto';
 
 @Controller('users')
 export class UsersController {
@@ -17,7 +18,7 @@ export class UsersController {
   }
 
   //PROTOCOL: Post
-  //ROTA: /user
+  //ROTA: /users/createUser
   //DESC: Cria user
   @Post('/createUser')
   createUser(@Body() createUserDto: CreateUserDto) {
@@ -25,5 +26,13 @@ export class UsersController {
     createUserDto.Permission_level = 3;
 
     return this.usersService.createUser(createUserDto);
+  }
+
+  //PROTOCOL: Post
+  //ROTA: /users/login
+  //DESC: Cria user
+  @Post('/login')
+  loginUser(@Body() loginUserDto: LoginUserDto) {
+    return this.usersService.loginUser(loginUserDto);
   }
 }
