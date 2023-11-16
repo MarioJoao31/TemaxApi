@@ -6,6 +6,8 @@ import { User } from './Entitys/User.entity';
 import { UsersModule } from './users/users.module';
 import { HouseModule } from './house/house.module';
 import { House } from './Entitys/House.entity';
+import { ApartementModule } from './apartement/apartement.module';
+import { Apartement } from './Entitys/Apartement.entity';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { House } from './Entitys/House.entity';
       username: 'root',
       password: '31OutubrO01',
       database: 'Temax',
-      entities: [User, House],
+      entities: [User, House, Apartement],
       synchronize: false,
     }),
     UsersModule,
     HouseModule,
+    ApartementModule,
   ],
   controllers: [AppController],
   providers: [AppService],

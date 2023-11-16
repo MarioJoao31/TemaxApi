@@ -11,7 +11,7 @@ export class HouseController {
   //ROTA: /user
   //DESC: Amostra todos os users
   @Get()
-  getAllUsers() {
+  getAllhouses() {
     //vai buscar a funcao ao service
     return this.houseService.findAll();
   }

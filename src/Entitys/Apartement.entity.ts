@@ -1,9 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class House {
+export class Apartement {
   @PrimaryGeneratedColumn()
-  HouseID: number;
+  ApartementID: number;
 
   @Column()
   UserID: number;
@@ -30,10 +30,7 @@ export class House {
   Postal_code: string;
 
   @Column()
-  Private_gross_area: number;
-
-  @Column()
-  Total_lot_area: number;
+  Floor: number;
 
   @Column()
   Bedrooms: number;

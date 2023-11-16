@@ -1,7 +1,7 @@
 // filtro do body
 import { IsInt, IsNumber, IsString } from 'class-validator';
 
-export class CreateHouseDto {
+export class CreateApartementDto {
   @IsString()
   UserID: string;
 
@@ -27,10 +27,7 @@ export class CreateHouseDto {
   Postal_code: string;
 
   @IsInt()
-  Private_gross_area: number;
-
-  @IsInt()
-  Total_lot_area: number;
+  Floor: number;
 
   @IsInt()
   Bedrooms: number;
