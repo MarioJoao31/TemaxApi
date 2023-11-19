@@ -8,20 +8,29 @@ export class HouseController {
   constructor(private houseService: HouseService) {}
 
   //PROTOCOL: Get
-  //ROTA: /user
-  //DESC: Amostra todos os users
+  // ROTA: /house
+  // DESC: Retorna todas as casas
   @Get()
   getAllhouses() {
     //vai buscar a funcao ao service
     return this.houseService.findAll();
   }
 
-  //PROTOCOL: POst
-  //ROTA: /user
-  //DESC: Amostra todos os users
+  //PROTOCOL: Post
+  // ROTA: /house/createHouse
+  // DESC: Cria uma nova casa
   @Post('/createHouse')
   createHouse(@Body() createHouseDto: CreateHouseDto) {
     //vai buscar a funcao ao service
     return this.houseService.createHouse(createHouseDto);
+  }
+
+
+  //PROTOCOL: Get
+  // ROTA: /house/rentHouses
+  // DESC: Retorna todas as casas disponíveis para aluguel
+  @Get('/rentHouses')
+  getRentHouses(){
+    return this.houseService.findRentHouses();
   }
 }

@@ -17,6 +17,16 @@ export class HouseService {
     console.log(createHouseDto);
     try {
       return this.houseRepository.save(createHouseDto);
-    } catch (e) {}
+    } catch (e) {
+      // Mensagem caso de erro:
+      console.error(e.message);
+      throw new Error('Erro ao criar a casa');
+    }
+  }
+
+  findRentHouses() {
+    return this.houseRepository.createQueryBuilder('house')
+    .where('LOWER(house.ListingType) LIKE :listingType', {listingType: '%rent%'})
+    .getMany();
   }
 }
