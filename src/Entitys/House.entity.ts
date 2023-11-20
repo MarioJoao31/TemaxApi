@@ -43,4 +43,8 @@ export class House {
 
   @Column()
   ListingType: string;
+  @Column()
+  Title: string;
+  @Column()
+  Address: string;
 }

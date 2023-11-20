@@ -16,7 +16,7 @@ import { Apartement } from './Entitys/Apartement.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '23062002',
+      password: '31OutubrO01',
       database: 'Temax',
       entities: [User, House, Apartement],
       synchronize: false,

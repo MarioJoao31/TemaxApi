@@ -40,4 +40,8 @@ export class CreateHouseDto {
 
   @IsString()
   ListingType: string;
+  @IsString()
+  Title: string;
+  @IsString()
+  Address: string;
 }

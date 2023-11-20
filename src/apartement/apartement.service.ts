@@ -10,7 +10,7 @@ export class ApartementService {
     @InjectRepository(Apartement)
     private apartementRepository: Repository<Apartement>,
   ) {}
-  
+
   //Listar todos apartamentos
   findAll() {
     return this.apartementRepository.find();
@@ -20,20 +20,22 @@ export class ApartementService {
   createApartment(createApartementDto) {
     console.log(createApartementDto);
 
-    try{
+    try {
       return this.apartementRepository.save(createApartementDto);
-    }catch (e) {
+    } catch (e) {
       //Mensagem caso de erro:
       console.error(e.message);
       throw new error('Erro ao criar apartamento');
     }
   }
 
-  //Lista todos os apartamentos com listingType rent, independentemente de como rent está escrito 
+  //Lista todos os apartamentos com listingType rent, independentemente de como rent está escrito
   findRentApartments() {
-    return this.apartementRepository.createQueryBuilder('apartment')
-    .where('LOWER(apartment.ListingType) LIKE :listingType', {listingType: '%rent%'})
-    .getMany();
+    return this.apartementRepository
+      .createQueryBuilder('apartment')
+      .where('LOWER(apartment.ListingType) LIKE :listingType', {
+        listingType: '%rent%',
+      })
+      .getMany();
   }
-
 }

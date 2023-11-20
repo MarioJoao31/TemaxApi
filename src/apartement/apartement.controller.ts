@@ -16,15 +16,13 @@ export class ApartementController {
     return this.apartementService.findAll();
   }
 
-
   //PROTOCOL: Get
   // ROTA: /apartement/rentApartements
   // DESC: Retorna todas os apartamentos disponíveis para aluguel
   @Get('/rentApartements')
-  getRentApartments(){
+  getRentApartments() {
     return this.apartementService.findRentApartments();
   }
-
 
   //PROTOCOL: Post
   // ROTA: /apartement/createApartement
@@ -33,5 +31,4 @@ export class ApartementController {
   createApartment(@Body() createApartementDto: CreateApartementDto) {
     return this.apartementService.createApartment(createApartementDto);
   }
-
 }

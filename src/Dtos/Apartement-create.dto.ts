@@ -37,4 +37,8 @@ export class CreateApartementDto {
 
   @IsString()
   ListingType: string;
+  @IsString()
+  Title: string;
+  @IsString()
+  Address: string;
 }
