@@ -8,6 +8,7 @@ import { HouseModule } from './house/house.module';
 import { House } from './Entitys/House.entity';
 import { ApartementModule } from './apartement/apartement.module';
 import { Apartement } from './Entitys/Apartement.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Apartement } from './Entitys/Apartement.entity';
     UsersModule,
     HouseModule,
     ApartementModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

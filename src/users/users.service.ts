@@ -3,12 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../Entitys/User.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../Dtos/user-create.dto';
+import { JwtService } from '../auth/jwt.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private readonly jwtService: JwtService,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -34,7 +36,10 @@ export class UsersService {
           if (!user) {
             resolve("Login doesn't exist!");
           } else {
-            resolve('Login exists');
+            // Generate a JWT token with the user's ID as the payload
+            const payload = { userId: user.UserID, username: user.Name };
+            const token = this.jwtService.signPayload(payload);
+            resolve({ userId: user.UserID, token });
           }
         })
         .catch((error) => {
