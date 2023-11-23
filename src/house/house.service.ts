@@ -9,6 +9,7 @@ export class HouseService {
     @InjectRepository(House)
     private houseRepository: Repository<House>,
   ) {}
+  
   findAll() {
     return this.houseRepository.find();
   }

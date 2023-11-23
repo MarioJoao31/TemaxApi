@@ -13,6 +13,7 @@ export class UsersService {
     private readonly jwtService: JwtService,
   ) {}
 
+  //ISI: funcao sincrona
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
