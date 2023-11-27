@@ -2,14 +2,14 @@
 import { IsInt, IsNumber, IsString } from 'class-validator';
 
 export class CreateHouseDto {
-  @IsString()
-  UserID: string;
+  @IsInt()
+  UserID: number;
 
   @IsNumber()
   Price: number;
 
-  @IsString()
-  Construction_year: string;
+  @IsInt()
+  Construction_year: number;
 
   @IsInt()
   Parking: number;
@@ -40,8 +40,10 @@ export class CreateHouseDto {
 
   @IsString()
   ListingType: string;
+
   @IsString()
   Title: string;
+  
   @IsString()
   Address: string;
 }
