@@ -34,7 +34,16 @@ export class ApartementService {
     return this.apartementRepository
       .createQueryBuilder('apartment')
       .where('LOWER(apartment.ListingType) LIKE :listingType', {
-        listingType: '%rent%',
+        listingType: '%Rent%',
+      })
+      .getMany();
+  }
+
+  findSellApartments() {
+    return this.apartementRepository
+      .createQueryBuilder('apartment')
+      .where('LOWER(apartment.ListingType) LIKE :listingType', {
+        listingType: '%Sell%',
       })
       .getMany();
   }

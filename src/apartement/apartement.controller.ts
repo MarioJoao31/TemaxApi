@@ -24,6 +24,15 @@ export class ApartementController {
     return this.apartementService.findRentApartments();
   }
 
+
+  //PROTOCOL: Get
+  // ROTA: /apartement/rentApartements
+  // DESC: Retorna todas os apartamentos disponíveis para vender
+  @Get('/sellApartements')
+  getSellApartements() {
+    return this.apartementService.findSellApartments();
+  }
+
   //PROTOCOL: Post
   // ROTA: /apartement/createApartement
   // DESC: Cria apartamento

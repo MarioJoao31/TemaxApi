@@ -33,4 +33,12 @@ export class HouseController {
   getRentHouses(){
     return this.houseService.findRentHouses();
   }
+
+  //PROTOCOL: Get
+  // ROTA: /house/rentHouses
+  // DESC: Retorna todas as casas disponíveis para aluguel
+  @Get('/sellHouses')
+  getSellHouses(){
+    return this.houseService.findSellHouses();
+  }
 }

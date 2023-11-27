@@ -27,7 +27,13 @@ export class HouseService {
 
   findRentHouses() {
     return this.houseRepository.createQueryBuilder('house')
-    .where('LOWER(house.ListingType) LIKE :listingType', {listingType: '%rent%'})
+    .where('LOWER(house.ListingType) LIKE :listingType', {listingType: '%Rent%'})
+    .getMany();
+  }
+
+  findSellHouses() {
+    return this.houseRepository.createQueryBuilder('house')
+    .where('LOWER(house.ListingType) LIKE :listingType', {listingType: '%Sell%'})
     .getMany();
   }
 }
