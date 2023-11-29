@@ -43,6 +43,7 @@ export class Apartement {
 
   @Column()
   Title: string;
+  
   @Column()
   Address: string;
 }

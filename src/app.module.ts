@@ -12,6 +12,9 @@ import { AuthModule } from './auth/auth.module';
 
 import { PaymentModule } from './payment/payment.module';
 import { Payment } from './Entitys/Payment.entity';
+import { RoomController } from './room/room.controller';
+import { RoomModule } from './room/room.module';
+import { Room } from './Entitys/Room.entity';
 
 @Module({
   imports: [
@@ -20,9 +23,9 @@ import { Payment } from './Entitys/Payment.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '31OutubrO01',
+      password: '23062002',
       database: 'Temax',
-      entities: [User, House, Apartement, Payment],
+      entities: [User, House, Apartement, Payment, Room],
       synchronize: false,
     }),
     UsersModule,
@@ -30,6 +33,7 @@ import { Payment } from './Entitys/Payment.entity';
     ApartementModule,
     AuthModule,
     PaymentModule,
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService],
