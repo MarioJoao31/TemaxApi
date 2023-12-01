@@ -29,10 +29,10 @@ export class CreateRoomDto {
     @IsInt()
     Num_beds: number;
 
-    @IsInt()
-    Private_wc: number;
+    @IsString()
+    Private_wc: string;
 
-    @IsInt()
+    @IsString()
     Available_kitchen: string;
 
     @IsString()
