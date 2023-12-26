@@ -12,7 +12,7 @@ export class PaymentController {
   // ROTA: /payment
   // DESC: Retorna todas as casas
   @Get()
-  getAllhouses() {
+  getAllPayment() {
     //vai buscar a funcao ao service
     return this.paymentService.findAll();
   }

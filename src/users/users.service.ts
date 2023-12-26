@@ -30,6 +30,7 @@ export class UsersService {
   //ISI: criar servico atraves de outro servico
   //ISI: usar servico
   //ISI: funçao assincrona
+  //ISI: token
   async loginUser(loginUserDto) {
     return new Promise((resolve, reject) => {
       this.usersRepository
