@@ -4,6 +4,7 @@ import { User } from '../Entitys/User.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../Dtos/user-create.dto';
 import { JwtService } from '../auth/jwt.service';
+import { create } from 'domain';
 
 @Injectable()
 export class UsersService {
@@ -18,10 +19,15 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
+  //ISI: SQL QUERY 
   async createUser(createUserDto: CreateUserDto) {
     try {
       console.log(createUserDto);
-      return this.usersRepository.save(createUserDto);
+
+      const query = ` INSERT INTO User(Name,Email,Password,Contact,Permission_level,Date_birth) VALUES ("${createUserDto.Name}","${createUserDto.Email}","${createUserDto.Password}",${createUserDto.Contact},${createUserDto.Permission_level},"${createUserDto.Date_birth}")`
+
+      const result = await this.usersRepository.query(query)
+      return result;
     } catch (e) {
       return e;
     }
