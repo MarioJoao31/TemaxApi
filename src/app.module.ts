@@ -9,15 +9,18 @@ import { House } from './Entitys/House.entity';
 import { ApartementModule } from './apartement/apartement.module';
 import { Apartement } from './Entitys/Apartement.entity';
 import { AuthModule } from './auth/auth.module';
-
 import { PaymentModule } from './payment/payment.module';
 import { Payment } from './Entitys/Payment.entity';
-import { RoomController } from './room/room.controller';
 import { RoomModule } from './room/room.module';
 import { Room } from './Entitys/Room.entity';
+import { ChatGateway } from './websocket/chat.gateway';
+import { MessagesModule } from './messages/messages.module';
+
+
 
 @Module({
   imports: [
+    
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -34,6 +37,8 @@ import { Room } from './Entitys/Room.entity';
     AuthModule,
     PaymentModule,
     RoomModule,
+    MessagesModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],

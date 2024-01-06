@@ -4,7 +4,7 @@ import { User } from '../Entitys/User.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../Dtos/user-create.dto';
 import { JwtService } from '../auth/jwt.service';
-import { create } from 'domain';
+
 
 @Injectable()
 export class UsersService {
@@ -15,11 +15,13 @@ export class UsersService {
   ) {}
 
   //ISI: funcao sincrona
+  //ISI: DESSIALIRIZAR 
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
   //ISI: SQL QUERY 
+  //ISI: SERIALIZAR 
   async createUser(createUserDto: CreateUserDto) {
     try {
       console.log(createUserDto);
