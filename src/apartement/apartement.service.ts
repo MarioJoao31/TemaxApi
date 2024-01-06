@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Apartement } from '../Entitys/Apartement.entity';
@@ -15,6 +15,24 @@ export class ApartementService {
   findAll() {
     return this.apartementRepository.find();
   }
+
+  async findUserApartments(userID: number) {
+    try {
+      const apartments = await this.apartementRepository.find({
+        where: { UserID: userID },
+      });
+
+      if (!apartments) {
+        throw new NotFoundException(`Não existem apartamentos associados ao usuário com ID: ${userID}`);
+      }
+
+      return apartments;
+    } catch (error) {
+      console.error('Ocorreu um erro:', error);
+      throw new Error('Falha ao obter apartamentos do usuário');
+    }
+  }
+
 
   //Criar apartamento
   createApartment(createApartementDto) {

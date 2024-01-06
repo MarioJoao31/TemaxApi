@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { House } from '../Entitys/House.entity';
@@ -12,6 +12,25 @@ export class HouseService {
   
   findAll() {
     return this.houseRepository.find();
+  }
+
+  async getUserHouses(userID: number) {
+    try {
+      // Encontre todas as casas associadas ao userID
+      const houses = await this.houseRepository.find({
+        where: { UserID: userID },
+      });
+  
+      if (!houses || houses.length === 0) {
+        throw new NotFoundException(`Não existem casas associadas a este User: ${userID}`);
+      }
+  
+      // Retorna um array de casas
+      return await houses;
+    } catch (error) {
+      console.error('Ocorreu um erro:', error);
+      throw new Error('Falha ao obter casas do user');
+    }
   }
 
   createHouse(createHouseDto) {

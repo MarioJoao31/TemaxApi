@@ -23,7 +23,7 @@ import { Room } from './Entitys/Room.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '31OutubrO01',
+      password: '23062002',
       database: 'Temax',
       entities: [User, House, Apartement, Payment, Room],
       synchronize: false,

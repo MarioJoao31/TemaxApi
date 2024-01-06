@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { ApartementService } from './apartement.service';
 import { CreateApartementDto } from 'src/Dtos/Apartement-create.dto';
@@ -14,6 +14,14 @@ export class ApartementController {
   getAllApartements() {
     //vai buscar a funcao ao service
     return this.apartementService.findAll();
+  }
+
+  //PROTOCOL: Get
+  // ROTA: /apartement/userApartments/:userID
+  // DESC: Retorna todos os apartamentos associados a um usuário específico
+  @Get('/:userID')
+  getUserApartments(@Param('userID') userID: number) {
+    return this.apartementService.findUserApartments(userID);
   }
 
   //PROTOCOL: Get
