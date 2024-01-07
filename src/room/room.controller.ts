@@ -15,6 +15,14 @@ export class RoomController {
     return this.roomService.findAll();
   }
 
+  // PROTOCOL: Get
+  // ROTA: /room/rentRooms
+  // DESC: Retorna todos os quartoa disponíveis para aluguel
+  @Get('/rentRooms')
+  getRentRooms() {
+    return this.roomService.findRentRooms();
+  }
+
   //PROTOCOL: Get
   // ROTA: /room/userRooms/:userID
   // DESC: Retorna todas as salas associadas a um usuário específico
@@ -23,13 +31,6 @@ export class RoomController {
     return this.roomService.findUserRooms(userID);
   }
 
-  // PROTOCOL: Get
-  // ROTA: /room/rentRooms
-  // DESC: Retorna todos os quartoa disponíveis para aluguel
-  @Get('/rentRooms')
-  getRentRooms() {
-    return this.roomService.findRentRooms();
-  }
 
   // PROTOCOL: Get
   // ROTA: /room/sellRooms

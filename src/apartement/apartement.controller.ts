@@ -17,19 +17,20 @@ export class ApartementController {
   }
 
   //PROTOCOL: Get
-  // ROTA: /apartement/userApartments/:userID
-  // DESC: Retorna todos os apartamentos associados a um usuário específico
-  @Get('/:userID')
-  getUserApartments(@Param('userID') userID: number) {
-    return this.apartementService.findUserApartments(userID);
-  }
-
-  //PROTOCOL: Get
   // ROTA: /apartement/rentApartements
   // DESC: Retorna todas os apartamentos disponíveis para aluguel
   @Get('/rentApartements')
   getRentApartments() {
     return this.apartementService.findRentApartments();
+  }
+
+
+  //PROTOCOL: Get
+  // ROTA: /apartement/userApartments/:userID
+  // DESC: Retorna todos os apartamentos associados a um usuário específico
+  @Get('/:userID')
+  getUserApartments(@Param('userID') userID: number) {
+    return this.apartementService.findUserApartments(userID);
   }
 
 
