@@ -32,6 +32,15 @@ export class RoomController {
   }
 
   //PROTOCOL: Get
+  // ROTA: /changePrioraty/:userID
+  // DESC: Altera a prioridade de todos os quartos do user 
+  @Get('changePrioraty/:userID')
+  updateRoomPrioratyLevel(@Param('userID') userID: number){
+    return this.roomService.updateRoomPrioratyLevel(userID)
+  }
+
+
+  //PROTOCOL: Get
   // ROTA: /room/userRooms/:userID
   // DESC: Retorna todas as salas associadas a um usuário específico
   @Get('/:userID')

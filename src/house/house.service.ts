@@ -33,6 +33,26 @@ export class HouseService {
     }
   }
 
+  async updateHousePrioratyLevel(userID: number) {
+    try {
+      // Encontre todas as casas associadas ao userID
+      const houses = await this.houseRepository.find({
+        where: { UserID: userID },
+      });
+
+      // Atualiza o Prioraty_level de todas as casas para 1
+      houses.forEach(async (house) => {
+        house.Prioraty_level = 1;
+        await this.houseRepository.save(house);
+      });
+    } catch (error) {
+      console.error('Ocorreu um erro ao atualizar o Prioraty_level:', error);
+      throw new Error('Falha ao atualizar o Prioraty_level das casas');
+    }
+  }
+
+
+
   createHouse(createHouseDto) {
     console.log(createHouseDto);
     try {

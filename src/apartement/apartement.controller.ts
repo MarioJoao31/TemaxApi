@@ -33,6 +33,14 @@ export class ApartementController {
   }
   
   //PROTOCOL: Get
+  // ROTA: /changePrioraty/:userID
+  // DESC: Altera a prioridade de todos os apartamentos do user 
+  @Get('changePrioraty/:userID')
+  updateApartementPrioratyLevel(@Param('userID') userID: number){
+    return this.apartementService.updateApartementPrioratyLevel(userID);
+  }
+
+  //PROTOCOL: Get
   // ROTA: /apartement/userApartments/:userID
   // DESC: Retorna todos os apartamentos associados a um usuário específico
   @Get('/:userID')

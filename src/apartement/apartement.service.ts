@@ -33,6 +33,24 @@ export class ApartementService {
     }
   }
 
+  async updateApartementPrioratyLevel(userID: number) {
+    try {
+      // Encontre todos os apartamentos associados ao userID
+      const apartements = await this.apartementRepository.find({
+        where: { UserID: userID },
+      });
+
+      // Atualiza o Prioraty_level de todos os apartamentos para 1
+      apartements.forEach(async (apartement) => {
+        apartement.Prioraty_level = 1;
+        await this.apartementRepository.save(apartement);
+      });
+    } catch (error) {
+      console.error('Ocorreu um erro ao atualizar o Prioraty_level:', error);
+      throw new Error('Falha ao atualizar o Prioraty_level dos apartamentos');
+    }
+  }
+
 
   //Criar apartamento
   createApartment(createApartementDto) {

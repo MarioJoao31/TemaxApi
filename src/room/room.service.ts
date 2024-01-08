@@ -34,6 +34,24 @@ export class RoomService {
     }
   }
 
+  async updateRoomPrioratyLevel(userID: number) {
+    try {
+      // Encontra todos os quartos associados ao userID
+      const rooms = await this.roomRepository.find({
+        where: { UserID: userID },
+      });
+
+      // Atualiza o Prioraty_level de todos os quartos para 1
+      rooms.forEach(async (room) => {
+        room.Prioraty_level = 1;
+        await this.roomRepository.save(room);
+      });
+    } catch (error) {
+      console.error('Ocorreu um erro ao atualizar o Prioraty_level:', error);
+      throw new Error('Falha ao atualizar o Prioraty_level dos quartos');
+    }
+  }
+
   // Cria um quarto
   createRoom(createRoomDto) {
     console.log(createRoomDto);

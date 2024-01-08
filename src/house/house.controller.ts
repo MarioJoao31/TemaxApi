@@ -33,6 +33,13 @@ export class HouseController {
     return this.houseService.findSellHouses();
   } 
 
+  //PROTOCOL: Get
+  // ROTA: /house/changePrioraty/:userID
+  // DESC: Altera a prioridade de todas as casas do user 
+  @Get('/changePrioraty/:userID')
+  updateHousePrioratyLevel(@Param('userID') userID: number) {
+    return this.houseService.updateHousePrioratyLevel(userID);
+  }
   
   //PROTOCOL: Get
   // ROTA: /house/userHouses/:userID
@@ -41,6 +48,8 @@ export class HouseController {
   getUserHouses(@Param('userID') userID: number) {
     return this.houseService.getUserHouses(userID);
   }
+
+
 
 
   //PROTOCOL: Post
