@@ -34,7 +34,7 @@ import { MessagesModule } from './messages/messages.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '1234',
+      password: '23062002',
       database: 'Temax',
       entities: [User, House, Apartement, Payment, Room, Image, Coment],
       synchronize: false,

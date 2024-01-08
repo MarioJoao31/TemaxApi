@@ -14,6 +14,6 @@ export class CreatePaymentDto {
   @IsString()
   Type_Payment: string;
 
-  @IsDate()
+  @IsString()
   Date: Date;
 }

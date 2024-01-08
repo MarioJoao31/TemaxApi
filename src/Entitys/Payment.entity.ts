@@ -17,6 +17,6 @@ export class Payment {
   @Column()
   Type_Payment: string;
 
-  @Column({ type: 'timestamp' })
+  @Column()
   Date: Date;
 }
