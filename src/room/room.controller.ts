@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { RoomService } from './room.service';
 import { CreateRoomDto } from 'src/Dtos/Room-create.dto';
@@ -22,6 +22,15 @@ export class RoomController {
   getRentRooms() {
     return this.roomService.findRentRooms();
   }
+
+  //PROTOCOL: Get
+  // ROTA: /room/userRooms/:userID
+  // DESC: Retorna todas as salas associadas a um usuário específico
+  @Get('/:userID')
+  getUserRooms(@Param('userID') userID: number) {
+    return this.roomService.findUserRooms(userID);
+  }
+
 
   // PROTOCOL: Get
   // ROTA: /room/sellRooms

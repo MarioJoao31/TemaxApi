@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import { HouseService } from './house.service';
 import { CreateHouseDto } from '../Dtos/house-create.dto';
@@ -16,6 +16,24 @@ export class HouseController {
     return this.houseService.findAll();
   }
 
+
+    //PROTOCOL: Get
+  // ROTA: /house/rentHouses
+  // DESC: Retorna todas as casas disponíveis para aluguel
+  @Get('/rentHouses')
+  getRentHouses(){
+    return this.houseService.findRentHouses();
+  }
+  
+  //PROTOCOL: Get
+  // ROTA: /house/userHouses/:userID
+  // DESC: Retorna todas as casas associadas a um usuário específico
+  @Get('/:userID')
+  getUserHouses(@Param('userID') userID: number) {
+    return this.houseService.getUserHouses(userID);
+  }
+  
+
   //PROTOCOL: Post
   // ROTA: /house/createHouse
   // DESC: Cria uma nova casa
@@ -25,14 +43,6 @@ export class HouseController {
     return this.houseService.createHouse(createHouseDto);
   }
 
-
-  //PROTOCOL: Get
-  // ROTA: /house/rentHouses
-  // DESC: Retorna todas as casas disponíveis para aluguel
-  @Get('/rentHouses')
-  getRentHouses(){
-    return this.houseService.findRentHouses();
-  }
 
   //PROTOCOL: Get
   // ROTA: /house/rentHouses

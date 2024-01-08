@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Room } from 'src/Entitys/Room.entity';
 import { Repository } from 'typeorm';
@@ -14,6 +14,24 @@ export class RoomService {
   // Lista todos os quartos
   findAll() {
     return this.roomRepository.find();
+  }
+
+   // Retorna todas as salas associadas a um usuário específico
+   async findUserRooms(userID: number) {
+    try {
+      const rooms = await this.roomRepository.find({
+        where: { UserID: userID },
+      });
+
+      if (!rooms) {
+        throw new NotFoundException(`Não existem salas associadas ao usuário com ID: ${userID}`);
+      }
+
+      return rooms;
+    } catch (error) {
+      console.error('Ocorreu um erro:', error);
+      throw new Error('Falha ao obter salas do usuário');
+    }
   }
 
   // Cria um quarto
