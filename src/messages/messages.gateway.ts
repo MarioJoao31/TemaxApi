@@ -23,8 +23,8 @@ export class MessagesGateway {
   constructor(private readonly messagesService: MessagesService) {}
 
   @SubscribeMessage('createMessage')
-  async create(@MessageBody() createMessageDto: CreateMessageDto) {
-    const message = await this.messagesService.create(createMessageDto);
+  async create(@MessageBody() createMessageDto: CreateMessageDto, @ConnectedSocket() client: Socket) {
+    const message = await this.messagesService.create(createMessageDto,client.id);
 
     this.server.emit('message', message);
 
@@ -32,8 +32,11 @@ export class MessagesGateway {
   }
 
   @SubscribeMessage('findAllMessages')
-  findAll() {
-    return this.messagesService.findAll();
+  findAll(@ConnectedSocket() client: Socket) {
+    const messages = this.messagesService.findAll();
+    // Assuming your service returns an array of messages
+    client.emit('message', messages);
+    return messages;
   }
 
   @SubscribeMessage('findOneMessage')

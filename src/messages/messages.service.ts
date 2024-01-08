@@ -6,7 +6,7 @@ import { Message } from './entities/message.entity';
 @Injectable()
 export class MessagesService {
 
-  messages: Message[] = [{name: "toni", text: "teste"}];
+  messages: Message[] = [{name: "toni", text: "teste"},{name: "maria", text: "A pila do mario é a melhor"}];
   clientToUser = {};
 
   identify(name: string, clientId: string){
@@ -19,9 +19,12 @@ export class MessagesService {
     return this.clientToUser[clientId];
   }
 
-  create(createMessageDto: CreateMessageDto) {
-    const message = {...createMessageDto}
-    return this.messages.push(createMessageDto); //TODO: improve func
+  create(createMessageDto: CreateMessageDto,clientId: string) {
+    const message = {
+      name: this.clientToUser[clientId],
+      text: createMessageDto.text
+    }
+    return this.messages.push(message); //TODO: improve func
   }
 
   //retorna todas a mensagens 
@@ -38,6 +41,7 @@ export class MessagesService {
   }
 
   remove(id: number) {
+   
     return `This action removes a #${id} message`;
   }
 }
