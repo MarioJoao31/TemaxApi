@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Image } from './image.entity';
 @Entity()
 export class Room {
     @PrimaryGeneratedColumn()

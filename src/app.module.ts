@@ -1,20 +1,27 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+
+// Importar as entidades e módulos que você já tinha
 import { User } from './Entitys/User.entity';
+import { House } from './Entitys/House.entity';
+import { Apartement } from './Entitys/Apartement.entity';
+import { Payment } from './Entitys/Payment.entity';
+import { Room } from './Entitys/Room.entity';
 import { UsersModule } from './users/users.module';
 import { HouseModule } from './house/house.module';
-import { House } from './Entitys/House.entity';
 import { ApartementModule } from './apartement/apartement.module';
-import { Apartement } from './Entitys/Apartement.entity';
 import { AuthModule } from './auth/auth.module';
-
 import { PaymentModule } from './payment/payment.module';
-import { Payment } from './Entitys/Payment.entity';
-import { RoomController } from './room/room.controller';
 import { RoomModule } from './room/room.module';
-import { Room } from './Entitys/Room.entity';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ImageModule } from './images/images.module'; // Importe o ImageModule
+import { Image } from './Entitys/Image.entity'; // Importe a entidade Image
+import { CommentsModule } from './comments/comments.module';
+import { Coment } from './Entitys/Coment.entity'; // Importe a entidade Image
 
 @Module({
   imports: [
@@ -23,10 +30,20 @@ import { Room } from './Entitys/Room.entity';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '31OutubrO01',
+      password: '1234',
       database: 'Temax',
-      entities: [User, House, Apartement, Payment, Room],
+      entities: [User, House, Apartement, Payment, Room, Image, Coment],
       synchronize: false,
+    }),
+    MulterModule.register({
+      storage: diskStorage({
+        destination: './imagens',
+        filename: (req, file, cb) => {
+          const filename: string = uuidv4();
+          const extension: string = file.originalname.split('.').pop();
+          cb(null, `${filename}.${extension}`);
+        },
+      }),
     }),
     UsersModule,
     HouseModule,
@@ -34,6 +51,8 @@ import { Room } from './Entitys/Room.entity';
     AuthModule,
     PaymentModule,
     RoomModule,
+    ImageModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
