@@ -21,10 +21,7 @@ import { AppService } from './app.service';
 import { ImageModule } from './images/images.module'; // Importe o ImageModule
 import { Image } from './Entitys/Image.entity'; // Importe a entidade Image
 import { CommentsModule } from './comments/comments.module';
-import { Coment } from './Entitys/Coment.entity'; // Importe a entidade Image
-import { Payment } from './Entitys/Payment.entity';
-import { RoomModule } from './room/room.module';
-import { Room } from './Entitys/Room.entity';
+import { Coment } from './Entitys/Coment.entity'; 
 import { ChatGateway } from './websocket/chat.gateway';
 import { MessagesModule } from './messages/messages.module';
 
@@ -37,7 +34,7 @@ import { MessagesModule } from './messages/messages.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '23062002',
+      password: '1234',
       database: 'Temax',
       entities: [User, House, Apartement, Payment, Room, Image, Coment],
       synchronize: false,
