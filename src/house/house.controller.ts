@@ -24,6 +24,15 @@ export class HouseController {
   getRentHouses(){
     return this.houseService.findRentHouses();
   }
+
+  //PROTOCOL: Get
+  // ROTA: /house/rentHouses
+  // DESC: Retorna todas as casas disponíveis para aluguel
+  @Get('/sellHouses')
+  getSellHouses(){
+    return this.houseService.findSellHouses();
+  } 
+
   
   //PROTOCOL: Get
   // ROTA: /house/userHouses/:userID
@@ -32,7 +41,7 @@ export class HouseController {
   getUserHouses(@Param('userID') userID: number) {
     return this.houseService.getUserHouses(userID);
   }
-  
+
 
   //PROTOCOL: Post
   // ROTA: /house/createHouse
@@ -43,12 +52,4 @@ export class HouseController {
     return this.houseService.createHouse(createHouseDto);
   }
 
-
-  //PROTOCOL: Get
-  // ROTA: /house/rentHouses
-  // DESC: Retorna todas as casas disponíveis para aluguel
-  @Get('/sellHouses')
-  getSellHouses(){
-    return this.houseService.findSellHouses();
-  }
 }

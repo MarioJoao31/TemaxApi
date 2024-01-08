@@ -23,21 +23,20 @@ export class RoomController {
     return this.roomService.findRentRooms();
   }
 
-  //PROTOCOL: Get
-  // ROTA: /room/userRooms/:userID
-  // DESC: Retorna todas as salas associadas a um usuário específico
-  @Get('/:userID')
-  getUserRooms(@Param('userID') userID: number) {
-    return this.roomService.findUserRooms(userID);
-  }
-
-
   // PROTOCOL: Get
   // ROTA: /room/sellRooms
   // DESC: Retorna todos os quartos disponíveis para vender
   @Get('/sellRooms')
   getSellRooms() {
     return this.roomService.findSellRooms();
+  }
+
+  //PROTOCOL: Get
+  // ROTA: /room/userRooms/:userID
+  // DESC: Retorna todas as salas associadas a um usuário específico
+  @Get('/:userID')
+  getUserRooms(@Param('userID') userID: number) {
+    return this.roomService.findUserRooms(userID);
   }
 
   // PROTOCOL: Post

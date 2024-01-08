@@ -24,22 +24,20 @@ export class ApartementController {
     return this.apartementService.findRentApartments();
   }
 
-
-  //PROTOCOL: Get
-  // ROTA: /apartement/userApartments/:userID
-  // DESC: Retorna todos os apartamentos associados a um usuário específico
-  @Get('/:userID')
-  getUserApartments(@Param('userID') userID: number) {
-    return this.apartementService.findUserApartments(userID);
-  }
-
-
   //PROTOCOL: Get
   // ROTA: /apartement/rentApartements
   // DESC: Retorna todas os apartamentos disponíveis para vender
   @Get('/sellApartements')
   getSellApartements() {
     return this.apartementService.findSellApartments();
+  }
+  
+  //PROTOCOL: Get
+  // ROTA: /apartement/userApartments/:userID
+  // DESC: Retorna todos os apartamentos associados a um usuário específico
+  @Get('/:userID')
+  getUserApartments(@Param('userID') userID: number) {
+    return this.apartementService.findUserApartments(userID);
   }
 
   //PROTOCOL: Post
