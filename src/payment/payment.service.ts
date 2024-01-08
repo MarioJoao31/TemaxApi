@@ -27,12 +27,12 @@ export class PaymentService {
     }
   }
 
-  getUserPendingPayments(userID: number): Promise<Payment[]> {
+  getUserPayPayments(userID: number): Promise<Payment[]> {
     try {
       return this.paymentRepository
         .createQueryBuilder('Payment')
         .where('Payment.UserID = :userID', { userID }) // a variavel ao lado direito tem de ter o mesmo nome que a variavel passada
-        .andWhere('Payment.Status = :Status', { Status: 'Pending' })
+        .andWhere('Payment.Status = :Status', { Status: 'Pago' })
         .getMany();
     } catch (error) {
       throw error(error);

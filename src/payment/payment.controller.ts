@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import { CreatePaymentDto } from 'src/Dtos/payment-create.dto';
 import { Payment } from 'src/Entitys/Payment.entity';
@@ -29,8 +29,8 @@ export class PaymentController {
    // PROTOCOL: Post
   // ROTA: /payment/createPayment
   // DESC: retorna todos os pagamentos pending que o cliente tenha disponivel 
-  @Post('/getUserPendingPayment')
-  getUserPendingPayment(@Body() user : User) {
-    return this.paymentService.getUserPendingPayments(user.UserID);
+  @Get('/:userID')
+  getUserPayPayment(@Param('userID') userID: number) {
+    return this.paymentService.getUserPayPayments(userID);
   }
 }
