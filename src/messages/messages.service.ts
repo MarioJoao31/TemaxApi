@@ -2,29 +2,27 @@ import { Injectable } from '@nestjs/common';
 import { CreateMessageDto } from './dto/create-message.dto';
 import { UpdateMessageDto } from './dto/update-message.dto';
 import { Message } from './entities/message.entity';
+import { channel } from 'diagnostics_channel';
 
 @Injectable()
 export class MessagesService {
 
-  messages: Message[] = [{name: "toni", text: "teste"},{name: "maria", text: "A pila do mario é a melhor"}];
+  messages: Message[] = [{channelID: "0" ,name: "toni", text: "teste"},{channelID: "0", name: "maria", text: "A do mario é a melhor"}];
   clientToUser = {};
 
-  identify(name: string, clientId: string){
-    this.clientToUser[clientId]= name;
-
-    return Object.values(this.clientToUser);
-  }
 
   getClientName(clientId: string){
     return this.clientToUser[clientId];
   }
 
-  create(createMessageDto: CreateMessageDto,clientId: string) {
+  create(createMessageDto: CreateMessageDto) {
     const message = {
-      name: this.clientToUser[clientId],
+      channelID: createMessageDto.channelID,
+      name: createMessageDto.name,
       text: createMessageDto.text
     }
-    return this.messages.push(message); //TODO: improve func
+    this.messages.push(message) //TODO: improve func
+    return message;
   }
 
   //retorna todas a mensagens 
@@ -32,16 +30,5 @@ export class MessagesService {
     return this.messages;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} message`;
-  }
-
-  update(id: number, updateMessageDto: UpdateMessageDto) {
-    return `This action updates a #${id} message`;
-  }
-
-  remove(id: number) {
-   
-    return `This action removes a #${id} message`;
-  }
+  
 }
