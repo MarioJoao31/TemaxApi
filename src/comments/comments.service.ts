@@ -58,5 +58,13 @@ export class CommentsService {
             throw new Error('Error retrieving comments.');
         }
     }
+
+    async getCommentsByRoomID(RoomID: number): Promise<Coment[]> {
+        try {
+            return this.comentRepository.find({ where: { RoomID: RoomID } });
+        } catch (error) {
+            throw new Error('Error retrieving comments.');
+        }
+    }
     
 }

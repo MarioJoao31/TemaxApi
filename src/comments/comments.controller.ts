@@ -33,4 +33,12 @@ export class CommentsController {
       throw new Error('Erro ao obter os comentários do apartamento.');
     }
   }
+  @Get('room/:roomId')
+  async getCommentsByRoomID(@Param('roomId') RoomID: number) {
+    try {
+      return this.commentService.getCommentsByApartmentID(RoomID);
+    } catch (error) {
+      throw new Error('Erro ao obter os comentários do apartamento.');
+    }
+  }
 }

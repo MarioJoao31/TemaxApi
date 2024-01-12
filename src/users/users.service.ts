@@ -61,4 +61,15 @@ export class UsersService {
         });
     });
   }
+
+  // Método para obter o nome do usuário pelo ID
+  async getUserNameById(userId: number): Promise<string | undefined> {
+    try {
+      const user = await this.usersRepository.findOne({ where: { UserID: userId } });
+      return user ? user.Name : undefined;
+    } catch (error) {
+      console.error(error);
+      throw new Error('An error occurred while retrieving user information.');
+    }
+  }
 }

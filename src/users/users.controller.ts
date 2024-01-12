@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../Dtos/user-create.dto';
 import { LoginUserDto } from '../Dtos/user-login.dto';
@@ -35,4 +35,14 @@ export class UsersController {
   loginUser(@Body() loginUserDto: LoginUserDto) {
     return this.usersService.loginUser(loginUserDto);
   }
+
+  @Get('/:userID/name')
+  async getUserNameById(@Param('userID') userID: number) {
+    
+      console.log('UserID:', userID);
+      const userName = await this.usersService.getUserNameById(userID);
+      console.log(userName);
+      return this.usersService.getUserNameById(userID);
+  
+ }
 }
