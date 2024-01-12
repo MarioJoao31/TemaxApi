@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../Entitys/User.entity';
 import { Repository } from 'typeorm';
@@ -72,4 +72,31 @@ export class UsersService {
       throw new Error('An error occurred while retrieving user information.');
     }
   }
+
+  async updateUser(userId: number, updateUserData: Partial<User>): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { UserID: userId } });
+
+    if (!user) {
+        throw new NotFoundException('User not found');
+    }
+
+    // Atualizar apenas os campos desejados
+    if (updateUserData.Name !== undefined) {
+        user.Name = updateUserData.Name;
+    }
+
+    if (updateUserData.Contact !== undefined) {
+        user.Contact = updateUserData.Contact;
+    }
+
+    if (updateUserData.Password !== undefined) {
+        user.Password = updateUserData.Password;
+    }
+
+    // Salvar as alterações no banco de dados
+    await this.usersRepository.save(user);
+
+    // Retornar o usuário atualizado
+    return user;
+}
 }

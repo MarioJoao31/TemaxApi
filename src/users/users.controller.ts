@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, Param } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param, Patch } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../Dtos/user-create.dto';
 import { LoginUserDto } from '../Dtos/user-login.dto';
+import { User } from 'src/Entitys/User.entity';
 
 @Controller('users')
 export class UsersController {
@@ -45,4 +46,20 @@ export class UsersController {
       return this.usersService.getUserNameById(userID);
   
  }
+ @Patch(':userID/update')
+async updateUser(@Param('userID') userId: number, @Body() updateUserData: Partial<User>) {
+    try {
+        console.log(`Received update request for userID: ${userId}`);
+        console.log('Update data:', updateUserData);
+
+        const updatedUser = await this.usersService.updateUser(userId, updateUserData);
+        console.log('User updated successfully:', updatedUser);
+
+        return updatedUser;
+    } catch (error) {
+        // Lida com exceções específicas, se necessário
+        console.error('Error updating user:', error.message);
+        return error.message;
+    }
+}
 }
